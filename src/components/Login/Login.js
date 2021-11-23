@@ -20,7 +20,6 @@ const Login = ({ logUser }) => {
     const password = formData.get('password');
     signInWithEmailAndPassword(auth, email, password)
       .then((res) => {
-        console.log(Boolean(localStorage.getItem('auth')));
         localStorage.setItem('auth', email);
         logUser();
         navigate('/');
