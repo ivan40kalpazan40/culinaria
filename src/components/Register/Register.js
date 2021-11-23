@@ -7,10 +7,12 @@ import {
   Message,
   Segment,
 } from 'semantic-ui-react';
+import { useNavigate } from 'react-router-dom';
 import { auth } from '../../config/firebase.config.js';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 
 const Register = () => {
+  const navigate = useNavigate();
   const submitRegister = (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
@@ -20,8 +22,12 @@ const Register = () => {
     const user = { email, password, confirmPassword };
 
     createUserWithEmailAndPassword(auth, email, password)
-      .then((res) => console.log(res.user))
-      .catch((err) => console.log(err.message));
+      .then((res) => navigate('/user/login'))
+      .catch((err) => {
+        const errorCode = err.code;
+        const errorMessage = err.message;
+        console.log(`ERR:: ${errorCode} :: ${errorMessage}`);
+      });
   };
   return (
     <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
