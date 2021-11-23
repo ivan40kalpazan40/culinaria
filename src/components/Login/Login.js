@@ -21,7 +21,8 @@ const Login = () => (
             fluid
             icon='user'
             iconPosition='left'
-            placeholder='E-mail address'
+            placeholder='Username'
+            type='text'
           />
           <Form.Input
             fluid
@@ -37,7 +38,7 @@ const Login = () => (
         </Segment>
       </Form>
       <Message>
-        New to us? <a href='#'>Sign Up</a>
+        New to us? <a href='/user/register'>Sign Up</a>
       </Message>
     </Grid.Column>
   </Grid>
