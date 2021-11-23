@@ -21,8 +21,8 @@ const Login = () => (
             fluid
             icon='user'
             iconPosition='left'
-            placeholder='Username'
-            type='text'
+            placeholder='Email'
+            type='email'
           />
           <Form.Input
             fluid

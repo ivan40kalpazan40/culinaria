@@ -7,16 +7,21 @@ import {
   Message,
   Segment,
 } from 'semantic-ui-react';
+import { auth } from '../../config/firebase.config.js';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 
 const Register = () => {
   const submitRegister = (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    const username = formData.get('username');
+    const email = formData.get('email');
     const password = formData.get('password');
     const confirmPassword = formData.get('confirmPassword');
-    const user = { username, password, confirmPassword };
-    console.log(user);
+    const user = { email, password, confirmPassword };
+
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((res) => console.log(res.user))
+      .catch((err) => console.log(err.message));
   };
   return (
     <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
@@ -29,8 +34,8 @@ const Register = () => {
             <Form.Input
               fluid
               icon='user'
-              name='username'
-              type='text'
+              name='email'
+              type='email'
               iconPosition='left'
               placeholder='E-mail address'
             />
