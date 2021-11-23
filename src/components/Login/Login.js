@@ -11,7 +11,7 @@ import {
   Segment,
 } from 'semantic-ui-react';
 
-const Login = () => {
+const Login = ({ logUser }) => {
   const navigate = useNavigate();
   const submitLogin = (e) => {
     e.preventDefault();
@@ -20,11 +20,15 @@ const Login = () => {
     const password = formData.get('password');
     signInWithEmailAndPassword(auth, email, password)
       .then((res) => {
-        console.log('Logged!!!');
+        console.log(Boolean(localStorage.getItem('auth')));
+        localStorage.setItem('auth', email);
+        logUser();
         navigate('/');
       })
       .catch((err) => {
+        localStorage.removeItem('auth');
         console.log(err.code);
+        navigate('/user/login');
       });
   };
   return (
