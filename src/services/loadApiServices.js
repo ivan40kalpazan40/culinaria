@@ -1,7 +1,4 @@
-// https://api.discogs.com/database/search?q=nirvana&&key=EAdGtGvwgrJtEOSJsVqa&secret=JgmxAIMcXgnmqDzWoVTmvGfZGMEWXRKH
-const discogsURL = 'https://api.discogs.com';
-const APP_KEY = 'EAdGtGvwgrJtEOSJsVqa';
-const APP_SECRET = 'JgmxAIMcXgnmqDzWoVTmvGfZGMEWXRKH';
+import { discogsURL, APP_KEY, APP_SECRET } from '../config/static.config';
 const credentials = `&key=${APP_KEY}&secret=${APP_SECRET}`;
 const param = '';
 
