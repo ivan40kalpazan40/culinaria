@@ -31,7 +31,7 @@ function App() {
           <Route path='/user/register' element={<Register />} />
           <Route path='/info/create' element={<Create />} />
           <Route path='/user/logout' element={<Logout logOut={logOut} />} />
-          <Route path='/music/artist/:id' element={<Details />} />
+          <Route path='/music/artist/:id/*' element={<Details />} />
         </Routes>
       </main>
     </>
