@@ -8,6 +8,7 @@ import Logout from './components/Logout';
 import Create from './components/Create';
 import './App.css';
 import Register from './components/Register';
+import Details from './components/Details';
 
 function App() {
   const [auth, setAuth] = useState(false);
@@ -30,6 +31,7 @@ function App() {
           <Route path='/user/register' element={<Register />} />
           <Route path='/info/create' element={<Create />} />
           <Route path='/user/logout' element={<Logout logOut={logOut} />} />
+          <Route path='/music/artist/:id' element={<Details />} />
         </Routes>
       </main>
     </>
