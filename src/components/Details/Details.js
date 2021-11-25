@@ -6,16 +6,38 @@ import * as loadApiServices from '../../services/loadApiServices';
 const Details = () => {
   const [artist, setArtist] = useState({});
   const params = useParams();
+  const [artistId, setArtistId] = useState(params.id);
+
   useEffect(() => {
     console.log(params);
-    loadApiServices.getArtist(params.id).then((res) => setArtist(res));
-  }, []);
+    setArtist(params.id);
+    loadApiServices.getArtist(artistId).then((res) => setArtist(res));
+  }, [artistId]);
+
   console.log(artist);
+  const clickLink = (e) => {
+    e.preventDefault();
+    let newParam = e.target.pathname.split('/music/artist/')[1];
+    setArtistId(newParam);
+  };
+
   const groupTemplate = (
     <Grid.Row>
       <Grid.Column width={4}>Groups:</Grid.Column>
       <Grid.Column width={12}>
-        <p>{}</p>
+        {artist.groups?.map((group) => (
+          <>
+            {/* Check this out */}
+            <Link
+              className='group-link'
+              to={`/music/artist/${group.id}`}
+              key={group.id}
+              onClick={clickLink}
+            >
+              {group.name}
+            </Link>
+          </>
+        ))}
       </Grid.Column>
     </Grid.Row>
   );
@@ -25,15 +47,17 @@ const Details = () => {
       <Grid.Column width={4}>Members:</Grid.Column>
       <Grid.Column width={12}>
         {artist.members?.map((member) => (
-          <li>
-              {/* Check this out */}
+          <>
+            {/* Check this out */}
             <Link
+              className='group-link'
               to={`/music/artist/${member.id}`}
-              onClick={() => setArtist({})}
+              key={member.id}
+              onClick={clickLink}
             >
               {member.name}
             </Link>
-          </li>
+          </>
         ))}
       </Grid.Column>
     </Grid.Row>
