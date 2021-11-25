@@ -125,3 +125,8 @@ p {
 .link:hover {
   color: seagreen;
 }
+
+.group-link {
+  color:crimson;
+  display: block;
+}
